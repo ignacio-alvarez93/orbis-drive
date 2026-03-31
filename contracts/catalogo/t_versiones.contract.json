@@ -1,0 +1,9 @@
+{
+  "contract_name": "t_versiones",
+  "domain": "catalogo",
+  "description": "Contrato oficial de datos para T_Versiones. Referencia estructural para IIG_Catalogo.",
+  "status": "approved",
+  "strict_mode": true,
+  "additional_properties": false,
+  "fields": {}
+}
