@@ -1,9 +1,326 @@
 {
   "contract_name": "t_versiones",
-  "domain": "catalogo",
-  "description": "Contrato oficial de datos para T_Versiones. Referencia estructural para IIG_Catalogo.",
-  "status": "approved",
-  "strict_mode": true,
-  "additional_properties": false,
-  "fields": {}
+  "version": "1.0.0",
+  "entity": "T_Versiones",
+  "source_system": "encycarpedia",
+  "description": "Contrato formal del dict_limpio de catálogo técnico de versiones para Orbis Drive",
+  "required_minimum_fields": [
+    "version_id",
+    "manufacturer_id",
+    "model_id",
+    "generation_id",
+    "source",
+    "source_version_url",
+    "manufacturer_name",
+    "model_name",
+    "generation_name",
+    "version_name"
+  ],
+  "groups": {
+    "identity_traceability": [
+      "version_id",
+      "manufacturer_id",
+      "model_id",
+      "generation_id",
+      "source",
+      "source_version_url",
+      "source_version_url_canonical",
+      "source_generation_url",
+      "source_model_url",
+      "source_manufacturer_url",
+      "scrape_date",
+      "scrape_timestamp",
+      "html_lang",
+      "source_date_modified"
+    ],
+    "canonical_hierarchy": [
+      "manufacturer_name",
+      "manufacturer_name_upper",
+      "model_name",
+      "model_name_upper",
+      "generation_name",
+      "generation_name_canonical",
+      "generation_name_upper",
+      "version_name",
+      "version_name_canonical",
+      "version_name_upper",
+      "full_title",
+      "headline",
+      "meta_description"
+    ],
+    "general_classification": [
+      "body_type",
+      "trim",
+      "facelift_status",
+      "doors",
+      "seats"
+    ],
+    "production_timeline": [
+      "production_start_year",
+      "production_end_year",
+      "production_years_text",
+      "model_year",
+      "is_current_generation"
+    ],
+    "commercial_summary": [
+      "power_cv",
+      "power_bhp",
+      "fuel_type",
+      "drive_type",
+      "drive_type_label"
+    ],
+    "engine_identity": [
+      "engine_name",
+      "engine_code",
+      "engine_family",
+      "engine_type",
+      "engine_layout",
+      "cylinders",
+      "valves_total",
+      "valves_per_cylinder",
+      "valvetrain",
+      "aspiration",
+      "fuel_system",
+      "engine_position",
+      "engine_orientation"
+    ],
+    "engine_geometry": [
+      "engine_displacement_cc",
+      "engine_displacement_l",
+      "unitary_displacement_cc",
+      "compression_ratio",
+      "bore_mm",
+      "stroke_mm",
+      "bore_stroke_text",
+      "bore_stroke_ratio",
+      "bore_stroke_ratio_label"
+    ],
+    "engine_power_torque": [
+      "max_power_cv",
+      "max_power_kw",
+      "max_power_bhp",
+      "max_power_rpm",
+      "max_torque_nm",
+      "max_torque_lbft",
+      "max_torque_rpm",
+      "specific_output_cv_l",
+      "specific_output_kw_l",
+      "power_per_cylinder_cv",
+      "bmep_bar",
+      "bmep_psi"
+    ],
+    "performance": [
+      "top_speed_kmh",
+      "top_speed_mph",
+      "acceleration_0_100_s",
+      "acceleration_0_62_s",
+      "power_to_weight_cv_ton",
+      "power_to_weight_kw_ton"
+    ],
+    "consumption_emissions": [
+      "fuel_consumption_urban_l_100km",
+      "fuel_consumption_extraurban_l_100km",
+      "fuel_consumption_combined_l_100km",
+      "fuel_consumption_combined_mpg_uk",
+      "fuel_consumption_combined_mpg_us",
+      "co2_emissions_g_km",
+      "emission_standard",
+      "start_stop",
+      "euro_ncap"
+    ],
+    "transmission_chassis": [
+      "gearbox_type",
+      "gearbox_label",
+      "gear_count",
+      "clutch_type",
+      "front_suspension",
+      "rear_suspension",
+      "front_brakes",
+      "rear_brakes",
+      "steering_type",
+      "turning_circle_m"
+    ],
+    "wheels_tyres": [
+      "tyre_size",
+      "front_tyre_size",
+      "rear_tyre_size",
+      "wheel_size",
+      "front_wheel_size",
+      "rear_wheel_size"
+    ],
+    "dimensions": [
+      "length_mm",
+      "width_mm",
+      "width_including_mirrors_mm",
+      "height_mm",
+      "wheelbase_mm",
+      "front_track_mm",
+      "rear_track_mm",
+      "ground_clearance_mm"
+    ],
+    "weights": [
+      "kerb_weight_kg",
+      "gross_weight_kg",
+      "payload_kg",
+      "towing_capacity_braked_kg",
+      "towing_capacity_unbraked_kg"
+    ],
+    "capacities": [
+      "boot_capacity_l",
+      "boot_capacity_min_l",
+      "boot_capacity_max_l",
+      "fuel_tank_l"
+    ]
+  },
+  "fields": {
+    "version_id": { "type": "string", "required": true, "nullable": false, "group": "identity_traceability" },
+    "manufacturer_id": { "type": "string", "required": true, "nullable": false, "group": "identity_traceability" },
+    "model_id": { "type": "string", "required": true, "nullable": false, "group": "identity_traceability" },
+    "generation_id": { "type": "string", "required": true, "nullable": false, "group": "identity_traceability" },
+
+    "source": { "type": "string", "required": true, "nullable": false, "group": "identity_traceability" },
+    "source_version_url": { "type": "string", "required": true, "nullable": false, "group": "identity_traceability" },
+    "source_version_url_canonical": { "type": "string", "required": false, "nullable": true, "group": "identity_traceability" },
+    "source_generation_url": { "type": "string", "required": false, "nullable": true, "group": "identity_traceability" },
+    "source_model_url": { "type": "string", "required": false, "nullable": true, "group": "identity_traceability" },
+    "source_manufacturer_url": { "type": "string", "required": false, "nullable": true, "group": "identity_traceability" },
+
+    "scrape_date": { "type": "date", "required": false, "nullable": true, "group": "identity_traceability" },
+    "scrape_timestamp": { "type": "datetime", "required": false, "nullable": true, "group": "identity_traceability" },
+    "html_lang": { "type": "string", "required": false, "nullable": true, "group": "identity_traceability" },
+    "source_date_modified": { "type": "date", "required": false, "nullable": true, "group": "identity_traceability" },
+
+    "manufacturer_name": { "type": "string", "required": true, "nullable": false, "group": "canonical_hierarchy" },
+    "manufacturer_name_upper": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+
+    "model_name": { "type": "string", "required": true, "nullable": false, "group": "canonical_hierarchy" },
+    "model_name_upper": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+
+    "generation_name": { "type": "string", "required": true, "nullable": false, "group": "canonical_hierarchy" },
+    "generation_name_canonical": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+    "generation_name_upper": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+
+    "version_name": { "type": "string", "required": true, "nullable": false, "group": "canonical_hierarchy" },
+    "version_name_canonical": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+    "version_name_upper": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+
+    "full_title": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+    "headline": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+    "meta_description": { "type": "string", "required": false, "nullable": true, "group": "canonical_hierarchy" },
+
+    "body_type": { "type": "string", "required": false, "nullable": true, "group": "general_classification" },
+    "trim": { "type": "string", "required": false, "nullable": true, "group": "general_classification" },
+    "facelift_status": { "type": "string", "required": false, "nullable": true, "group": "general_classification" },
+    "doors": { "type": "integer", "required": false, "nullable": true, "group": "general_classification" },
+    "seats": { "type": "integer", "required": false, "nullable": true, "group": "general_classification" },
+
+    "production_start_year": { "type": "integer", "required": false, "nullable": true, "group": "production_timeline" },
+    "production_end_year": { "type": "integer", "required": false, "nullable": true, "group": "production_timeline" },
+    "production_years_text": { "type": "string", "required": false, "nullable": true, "group": "production_timeline" },
+    "model_year": { "type": "integer", "required": false, "nullable": true, "group": "production_timeline" },
+    "is_current_generation": { "type": "boolean", "required": false, "nullable": true, "group": "production_timeline" },
+
+    "power_cv": { "type": "integer", "required": false, "nullable": true, "group": "commercial_summary" },
+    "power_bhp": { "type": "integer", "required": false, "nullable": true, "group": "commercial_summary" },
+    "fuel_type": { "type": "string", "required": false, "nullable": true, "group": "commercial_summary" },
+    "drive_type": { "type": "string", "required": false, "nullable": true, "group": "commercial_summary" },
+    "drive_type_label": { "type": "string", "required": false, "nullable": true, "group": "commercial_summary" },
+
+    "engine_name": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "engine_code": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "engine_family": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "engine_type": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "engine_layout": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "cylinders": { "type": "integer", "required": false, "nullable": true, "group": "engine_identity" },
+    "valves_total": { "type": "integer", "required": false, "nullable": true, "group": "engine_identity" },
+    "valves_per_cylinder": { "type": "integer", "required": false, "nullable": true, "group": "engine_identity" },
+    "valvetrain": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "aspiration": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "fuel_system": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "engine_position": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+    "engine_orientation": { "type": "string", "required": false, "nullable": true, "group": "engine_identity" },
+
+    "engine_displacement_cc": { "type": "integer", "required": false, "nullable": true, "group": "engine_geometry" },
+    "engine_displacement_l": { "type": "number", "required": false, "nullable": true, "group": "engine_geometry" },
+    "unitary_displacement_cc": { "type": "number", "required": false, "nullable": true, "group": "engine_geometry" },
+    "compression_ratio": { "type": "number", "required": false, "nullable": true, "group": "engine_geometry" },
+    "bore_mm": { "type": "number", "required": false, "nullable": true, "group": "engine_geometry" },
+    "stroke_mm": { "type": "number", "required": false, "nullable": true, "group": "engine_geometry" },
+    "bore_stroke_text": { "type": "string", "required": false, "nullable": true, "group": "engine_geometry" },
+    "bore_stroke_ratio": { "type": "number", "required": false, "nullable": true, "group": "engine_geometry" },
+    "bore_stroke_ratio_label": { "type": "string", "required": false, "nullable": true, "group": "engine_geometry" },
+
+    "max_power_cv": { "type": "integer", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "max_power_kw": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "max_power_bhp": { "type": "integer", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "max_power_rpm": { "type": "integer", "required": false, "nullable": true, "group": "engine_power_torque" },
+
+    "max_torque_nm": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "max_torque_lbft": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "max_torque_rpm": { "type": "integer", "required": false, "nullable": true, "group": "engine_power_torque" },
+
+    "specific_output_cv_l": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "specific_output_kw_l": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "power_per_cylinder_cv": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "bmep_bar": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+    "bmep_psi": { "type": "number", "required": false, "nullable": true, "group": "engine_power_torque" },
+
+    "top_speed_kmh": { "type": "number", "required": false, "nullable": true, "group": "performance" },
+    "top_speed_mph": { "type": "number", "required": false, "nullable": true, "group": "performance" },
+    "acceleration_0_100_s": { "type": "number", "required": false, "nullable": true, "group": "performance" },
+    "acceleration_0_62_s": { "type": "number", "required": false, "nullable": true, "group": "performance" },
+    "power_to_weight_cv_ton": { "type": "number", "required": false, "nullable": true, "group": "performance" },
+    "power_to_weight_kw_ton": { "type": "number", "required": false, "nullable": true, "group": "performance" },
+
+    "fuel_consumption_urban_l_100km": { "type": "number", "required": false, "nullable": true, "group": "consumption_emissions" },
+    "fuel_consumption_extraurban_l_100km": { "type": "number", "required": false, "nullable": true, "group": "consumption_emissions" },
+    "fuel_consumption_combined_l_100km": { "type": "number", "required": false, "nullable": true, "group": "consumption_emissions" },
+    "fuel_consumption_combined_mpg_uk": { "type": "number", "required": false, "nullable": true, "group": "consumption_emissions" },
+    "fuel_consumption_combined_mpg_us": { "type": "number", "required": false, "nullable": true, "group": "consumption_emissions" },
+
+    "co2_emissions_g_km": { "type": "number", "required": false, "nullable": true, "group": "consumption_emissions" },
+    "emission_standard": { "type": "string", "required": false, "nullable": true, "group": "consumption_emissions" },
+    "start_stop": { "type": "boolean", "required": false, "nullable": true, "group": "consumption_emissions" },
+    "euro_ncap": { "type": "string", "required": false, "nullable": true, "group": "consumption_emissions" },
+
+    "gearbox_type": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "gearbox_label": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "gear_count": { "type": "integer", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "clutch_type": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+
+    "front_suspension": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "rear_suspension": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "front_brakes": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "rear_brakes": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "steering_type": { "type": "string", "required": false, "nullable": true, "group": "transmission_chassis" },
+    "turning_circle_m": { "type": "number", "required": false, "nullable": true, "group": "transmission_chassis" },
+
+    "tyre_size": { "type": "string", "required": false, "nullable": true, "group": "wheels_tyres" },
+    "front_tyre_size": { "type": "string", "required": false, "nullable": true, "group": "wheels_tyres" },
+    "rear_tyre_size": { "type": "string", "required": false, "nullable": true, "group": "wheels_tyres" },
+    "wheel_size": { "type": "string", "required": false, "nullable": true, "group": "wheels_tyres" },
+    "front_wheel_size": { "type": "string", "required": false, "nullable": true, "group": "wheels_tyres" },
+    "rear_wheel_size": { "type": "string", "required": false, "nullable": true, "group": "wheels_tyres" },
+
+    "length_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+    "width_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+    "width_including_mirrors_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+    "height_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+    "wheelbase_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+    "front_track_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+    "rear_track_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+    "ground_clearance_mm": { "type": "number", "required": false, "nullable": true, "group": "dimensions" },
+
+    "kerb_weight_kg": { "type": "number", "required": false, "nullable": true, "group": "weights" },
+    "gross_weight_kg": { "type": "number", "required": false, "nullable": true, "group": "weights" },
+    "payload_kg": { "type": "number", "required": false, "nullable": true, "group": "weights" },
+    "towing_capacity_braked_kg": { "type": "number", "required": false, "nullable": true, "group": "weights" },
+    "towing_capacity_unbraked_kg": { "type": "number", "required": false, "nullable": true, "group": "weights" },
+
+    "boot_capacity_l": { "type": "number", "required": false, "nullable": true, "group": "capacities" },
+    "boot_capacity_min_l": { "type": "number", "required": false, "nullable": true, "group": "capacities" },
+    "boot_capacity_max_l": { "type": "number", "required": false, "nullable": true, "group": "capacities" },
+    "fuel_tank_l": { "type": "number", "required": false, "nullable": true, "group": "capacities" }
+  }
 }
+
