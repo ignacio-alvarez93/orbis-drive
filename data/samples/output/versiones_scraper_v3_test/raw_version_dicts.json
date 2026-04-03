@@ -1,0 +1,446 @@
+[
+  {
+    "source": "encycarpedia",
+    "source_version_url": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-100-hatch",
+    "canonical_url": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-100-hatch",
+    "html_lang": "es",
+    "scrape_timestamp_utc": "2026-04-03T15:23:15.806697+00:00",
+    "scraper_version": "v3",
+    "parser_version": "v3",
+    "capture_mode": "html",
+    "headline": "2002 SEAT Ibiza 1.9 TDI 100 - Ficha Técnicas y Rendimiento",
+    "meta": {
+      "canonical": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-100-hatch",
+      "og_title": "2002-2006 SEAT Ibiza 1.9 TDI 100 Ficha Técnica, Clasificaciones y Comparaciones 🚘",
+      "og_description": "Fichas técnicas y datos de rendimiento del SEAT Ibiza 1.9 TDI 100 (2002-2006)",
+      "og_url": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-100-hatch",
+      "meta_description": "Ficha técnica del 2002-2006 preactualizado SEAT Ibiza 1.9 TDI 100 hatchback. Encuentra y compara las prestaciones, la practicidad, el chasis, los frenos, la velocidad máxima, la aceleración, la suspensión, el motor, los pesos, el equipaje y mucho más. Años de producción: 2002, 2003, 2004, 2005, 2006.",
+      "html_lang": "es",
+      "data_lang": "es-ES"
+    },
+    "breadcrumbs": [
+      {
+        "position": 1,
+        "name": "SEAT",
+        "item": "https://www.encycarpedia.com/es/seat/"
+      },
+      {
+        "position": 2,
+        "name": "Ibiza (2002-2009)",
+        "item": "https://www.encycarpedia.com/es/seat/02-ibiza"
+      },
+      {
+        "position": 3,
+        "name": "2002 SEAT Ibiza 1.9 TDI 100",
+        "item": null
+      }
+    ],
+    "summary": {
+      "Diésel Motor": "1,9 L Línea 4 Turbo",
+      "Velocidad Máxima": "190 Km/h",
+      "0-100 Km/h Aceleración": "10,8 segundos",
+      "Potencia Total": "100 CV",
+      "Consumos (Medio)": "4,9 l/100km",
+      "Puertas": "3-5 Puertas",
+      "Asientos": "5 Asientos",
+      "Capacitad Maletero": "267-960 L",
+      "Peso en Vacío": "1.142 kg",
+      "Disposición del Tren Motriz": "Delantero - FWD"
+    },
+    "sections": {
+      "Datos de Prestaciones": {
+        "Velocidad Máxima": "190 Km/h",
+        "0-100 Km/h": "10,8 segundos",
+        "Relación Potencia-Peso": "11,38 kg/CV",
+        "Potencia": "100 CV",
+        "Par": "240 N·m"
+      },
+      "Economía de Combustible": {
+        "Medio": "4,9 l/100km",
+        "Autonomía Total": "917 Kilómetros"
+      },
+      "Diésel Motor": {
+        "Cilindrada": [
+          "1,9 Litro",
+          "1.896 cc"
+        ],
+        "Configuración": "Línea 4",
+        "Inducción": "Turbo",
+        "Potencia Máximo": [
+          "100 CV @ 4.000 RPM",
+          "99 BHP @ 4.000 RPM"
+        ],
+        "Par Máximo": [
+          "240 N·m @ 1.800 RPM",
+          "177 lb·ft @ 1.800 RPM"
+        ],
+        "Tren de Válvulas": "SOHC",
+        "Válvulas/Cilindro": "2 (8v Total)",
+        "Alimentación": "Riel Común",
+        "Posición": "Delantero Motor",
+        "Orientación": "Transversal",
+        "Combustible": "Diésel",
+        "Capacitad Depósito": "45 Litros"
+      },
+      "Más Datos del Motor": {
+        "Índice de Compresión": "19:1",
+        "Diámetro x Carrera": "79,5 x 95,5 mm",
+        "Relación Diámetro-Carrera": [
+          "0,83:1",
+          "Subcuadrado"
+        ],
+        "Salida Específica": "53 CV/L",
+        "Potencia/Cilindro": "25 CV",
+        "Cilindrada Unitaria": "474 cc",
+        "PME": [
+          "15,9 Bar",
+          "230,7 PSI"
+        ]
+      },
+      "Tren Motriz y Chasis": {
+        "Ruedas Motrices": [
+          "FWD",
+          "Tracción Delantera"
+        ],
+        "Caja De Cambios (MT)": "5 Velocidades",
+        "Neumáticos": "185/60R14 H",
+        "Suspensión Delantera": "MacPherson",
+        "Suspensión Trasera": "Barra De Torsión",
+        "Frenos Delanteros": "Disco Ventilado",
+        "Frenos Traseros": "Disco Sólido"
+      },
+      "Dimensiones y Practicidad": {
+        "Carrocería": "Pequeño Hatchback",
+        "Puertas": "3-5",
+        "Asientos": "5",
+        "Capacitad Maletero": "267-960 L",
+        "Peso en Vacío": "1.142 kg",
+        "Peso Bruto": "1.637 kg",
+        "Capacidad de Carga": "495 kg",
+        "Capacidad de Remolque": "1.200 kg",
+        "Longitud": "3.953 mm",
+        "Anchura": "1.698 mm",
+        "Altura": "1.441 mm",
+        "Batalla": "2.460 mm",
+        "Via Delantera": "1.435 mm",
+        "Via Trasera": "1.424 mm"
+      },
+      "Resultados de Euro NCAP": {
+        "Ocupante Adulto": "★★★★☆",
+        "Peatón": "★★☆☆"
+      }
+    },
+    "section_names": [
+      "Datos de Prestaciones",
+      "Economía de Combustible",
+      "Diésel Motor",
+      "Más Datos del Motor",
+      "Tren Motriz y Chasis",
+      "Dimensiones y Practicidad",
+      "Resultados de Euro NCAP"
+    ],
+    "jsonld_date_modified": "2023-12-06",
+    "quality_flags": {
+      "minimum_required_ok": true,
+      "missing_minimum_fields": [],
+      "summary_fields_detected": 10,
+      "sections_detected": 7
+    }
+  },
+  {
+    "source": "encycarpedia",
+    "source_version_url": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-sport-hatch",
+    "canonical_url": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-sport-hatch",
+    "html_lang": "es",
+    "scrape_timestamp_utc": "2026-04-03T15:23:30.483419+00:00",
+    "scraper_version": "v3",
+    "parser_version": "v3",
+    "capture_mode": "html",
+    "headline": "2002 SEAT Ibiza 1.9 TDI Sport - Ficha Técnicas y Rendimiento",
+    "meta": {
+      "canonical": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-sport-hatch",
+      "og_title": "2002-2006 SEAT Ibiza 1.9 TDI Sport Ficha Técnica, Clasificaciones y Comparaciones 🚘",
+      "og_description": "Fichas técnicas y datos de rendimiento del SEAT Ibiza 1.9 TDI Sport (2002-2006)",
+      "og_url": "https://www.encycarpedia.com/es/seat/02-ibiza-1-9-tdi-sport-hatch",
+      "meta_description": "Ficha técnica del 2002-2006 preactualizado SEAT Ibiza 1.9 TDI Sport hatchback. Encuentra y compara las prestaciones, la practicidad, el chasis, los frenos, la velocidad máxima, la aceleración, la suspensión, el motor, los pesos, el equipaje y mucho más. Años de producción: 2002, 2003, 2004, 2005, 2006.",
+      "html_lang": "es",
+      "data_lang": "es-ES"
+    },
+    "breadcrumbs": [
+      {
+        "position": 1,
+        "name": "SEAT",
+        "item": "https://www.encycarpedia.com/es/seat/"
+      },
+      {
+        "position": 2,
+        "name": "Ibiza (2002-2009)",
+        "item": "https://www.encycarpedia.com/es/seat/02-ibiza"
+      },
+      {
+        "position": 3,
+        "name": "2002 SEAT Ibiza 1.9 TDI Sport",
+        "item": null
+      }
+    ],
+    "summary": {
+      "Diésel Motor": "1,9 L Línea 4 Turbo",
+      "Velocidad Máxima": "207 Km/h",
+      "0-100 Km/h Aceleración": "9,4 segundos",
+      "Potencia Total": "130 CV",
+      "Consumos (Medio)": "5 l/100km",
+      "Puertas": "3-5 Puertas",
+      "Asientos": "5 Asientos",
+      "Capacitad Maletero": "267-960 L",
+      "Peso en Vacío": "1.192 kg",
+      "Disposición del Tren Motriz": "Delantero - FWD"
+    },
+    "sections": {
+      "Datos de Prestaciones": {
+        "Velocidad Máxima": "207 Km/h",
+        "0-100 Km/h": "9,4 segundos",
+        "Relación Potencia-Peso": "9,18 kg/CV",
+        "Potencia": "130 CV",
+        "Par": "310 N·m"
+      },
+      "Economía de Combustible": {
+        "Medio": "5 l/100km",
+        "Autonomía Total": "901 Kilómetros"
+      },
+      "Diésel Motor": {
+        "Cilindrada": [
+          "1,9 Litro",
+          "1.896 cc"
+        ],
+        "Configuración": "Línea 4",
+        "Inducción": "Turbo",
+        "Potencia Máximo": [
+          "130 CV @ 4.000 RPM",
+          "128 BHP @ 4.000 RPM"
+        ],
+        "Par Máximo": [
+          "310 N·m @ 1.900 RPM",
+          "229 lb·ft @ 1.900 RPM"
+        ],
+        "Tren de Válvulas": "SOHC",
+        "Válvulas/Cilindro": "2 (8v Total)",
+        "Alimentación": "Riel Común",
+        "Posición": "Delantero Motor",
+        "Orientación": "Transversal",
+        "Combustible": "Diésel",
+        "Capacitad Depósito": "45 Litros"
+      },
+      "Más Datos del Motor": {
+        "Índice de Compresión": "19:1",
+        "Diámetro x Carrera": "79,5 x 95,5 mm",
+        "Relación Diámetro-Carrera": [
+          "0,83:1",
+          "Subcuadrado"
+        ],
+        "Salida Específica": "69 CV/L",
+        "Potencia/Cilindro": "32 CV",
+        "Cilindrada Unitaria": "474 cc",
+        "PME": [
+          "20,5 Bar",
+          "298 PSI"
+        ]
+      },
+      "Tren Motriz y Chasis": {
+        "Ruedas Motrices": [
+          "FWD",
+          "Tracción Delantera"
+        ],
+        "Caja De Cambios (MT)": "6 Velocidades",
+        "Neumáticos": "185/55R15 V",
+        "Suspensión Delantera": "MacPherson",
+        "Suspensión Trasera": "Barra De Torsión",
+        "Frenos Delanteros": "Disco Ventilado",
+        "Frenos Traseros": "Disco Sólido"
+      },
+      "Dimensiones y Practicidad": {
+        "Carrocería": "Pequeño Hatchback",
+        "Puertas": "3-5",
+        "Asientos": "5",
+        "Capacitad Maletero": "267-960 L",
+        "Peso en Vacío": "1.192 kg",
+        "Peso Bruto": "1.687 kg",
+        "Capacidad de Carga": "495 kg",
+        "Capacidad de Remolque": "1.200 kg",
+        "Longitud": "3.953 mm",
+        "Anchura": "1.698 mm",
+        "Altura": "1.441 mm",
+        "Batalla": "2.460 mm",
+        "Via Delantera": "1.435 mm",
+        "Via Trasera": "1.424 mm"
+      },
+      "Resultados de Euro NCAP": {
+        "Ocupante Adulto": "★★★★☆",
+        "Peatón": "★★☆☆"
+      }
+    },
+    "section_names": [
+      "Datos de Prestaciones",
+      "Economía de Combustible",
+      "Diésel Motor",
+      "Más Datos del Motor",
+      "Tren Motriz y Chasis",
+      "Dimensiones y Practicidad",
+      "Resultados de Euro NCAP"
+    ],
+    "jsonld_date_modified": "2023-11-20",
+    "quality_flags": {
+      "minimum_required_ok": true,
+      "missing_minimum_fields": [],
+      "summary_fields_detected": 10,
+      "sections_detected": 7
+    }
+  },
+  {
+    "source": "encycarpedia",
+    "source_version_url": "https://www.encycarpedia.com/es/seat/04-ibiza-1-4-tdi-75-hatch",
+    "canonical_url": "https://www.encycarpedia.com/es/seat/04-ibiza-1-4-tdi-75-hatch",
+    "html_lang": "es",
+    "scrape_timestamp_utc": "2026-04-03T15:23:41.275538+00:00",
+    "scraper_version": "v3",
+    "parser_version": "v3",
+    "capture_mode": "html",
+    "headline": "2004 SEAT Ibiza 1.4 TDI 75 - Ficha Técnicas y Rendimiento",
+    "meta": {
+      "canonical": "https://www.encycarpedia.com/es/seat/04-ibiza-1-4-tdi-75-hatch",
+      "og_title": "2004-2006 SEAT Ibiza 1.4 TDI 75 Ficha Técnica, Clasificaciones y Comparaciones 🚘",
+      "og_description": "Fichas técnicas y datos de rendimiento del SEAT Ibiza 1.4 TDI 75 (2004-2006)",
+      "og_url": "https://www.encycarpedia.com/es/seat/04-ibiza-1-4-tdi-75-hatch",
+      "meta_description": "Ficha técnica del 2004-2006 preactualizado SEAT Ibiza 1.4 TDI 75 hatchback. Encuentra y compara las prestaciones, la practicidad, el chasis, los frenos, la velocidad máxima, la aceleración, la suspensión, el motor, los pesos, el equipaje y mucho más. Años de producción: 2004, 2005, 2006.",
+      "html_lang": "es",
+      "data_lang": "es-ES"
+    },
+    "breadcrumbs": [
+      {
+        "position": 1,
+        "name": "SEAT",
+        "item": "https://www.encycarpedia.com/es/seat/"
+      },
+      {
+        "position": 2,
+        "name": "Ibiza (2002-2009)",
+        "item": "https://www.encycarpedia.com/es/seat/02-ibiza"
+      },
+      {
+        "position": 3,
+        "name": "2004 SEAT Ibiza 1.4 TDI 75",
+        "item": null
+      }
+    ],
+    "summary": {
+      "Diésel Motor": "1,4 L Línea 3 Turbo",
+      "Velocidad Máxima": "172 Km/h",
+      "0-100 Km/h Aceleración": "13,9 segundos",
+      "Potencia Total": "75 CV",
+      "Consumos (Medio)": "4,6 l/100km",
+      "Puertas": "3-5 Puertas",
+      "Asientos": "5 Asientos",
+      "Capacitad Maletero": "267-960 L",
+      "Peso en Vacío": "1.106 kg",
+      "Disposición del Tren Motriz": "Delantero - FWD"
+    },
+    "sections": {
+      "Datos de Prestaciones": {
+        "Velocidad Máxima": "172 Km/h",
+        "0-100 Km/h": "13,9 segundos",
+        "Relación Potencia-Peso": "14,75 kg/CV",
+        "Potencia": "75 CV",
+        "Par": "195 N·m"
+      },
+      "Economía de Combustible": {
+        "Medio": "4,6 l/100km",
+        "Autonomía Total": "977 Kilómetros"
+      },
+      "Diésel Motor": {
+        "Cilindrada": [
+          "1,4 Litro",
+          "1.422 cc"
+        ],
+        "Configuración": "Línea 3",
+        "Inducción": "Turbo",
+        "Potencia Máximo": [
+          "75 CV @ 4.000 RPM",
+          "74 BHP @ 4.000 RPM"
+        ],
+        "Par Máximo": [
+          "195 N·m @ 2.200 RPM",
+          "144 lb·ft @ 2.200 RPM"
+        ],
+        "Tren de Válvulas": "SOHC",
+        "Válvulas/Cilindro": "2 (6v Total)",
+        "Alimentación": "Riel Común",
+        "Posición": "Delantero Motor",
+        "Orientación": "Transversal",
+        "Combustible": "Diésel",
+        "Capacitad Depósito": "45 Litros"
+      },
+      "Más Datos del Motor": {
+        "Índice de Compresión": "19,5:1",
+        "Diámetro x Carrera": "79,5 x 95,5 mm",
+        "Relación Diámetro-Carrera": [
+          "0,83:1",
+          "Subcuadrado"
+        ],
+        "Salida Específica": "53 CV/L",
+        "Potencia/Cilindro": "25 CV",
+        "Cilindrada Unitaria": "474 cc",
+        "PME": [
+          "17,2 Bar",
+          "249,9 PSI"
+        ]
+      },
+      "Tren Motriz y Chasis": {
+        "Ruedas Motrices": [
+          "FWD",
+          "Tracción Delantera"
+        ],
+        "Caja De Cambios (MT)": "5 Velocidades",
+        "Neumáticos": "185/60R14 T",
+        "Suspensión Delantera": "MacPherson",
+        "Suspensión Trasera": "Barra De Torsión",
+        "Frenos Delanteros": "Disco Ventilado",
+        "Frenos Traseros": "Disco Sólido"
+      },
+      "Dimensiones y Practicidad": {
+        "Carrocería": "Pequeño Hatchback",
+        "Puertas": "3-5",
+        "Asientos": "5",
+        "Capacitad Maletero": "267-960 L",
+        "Peso en Vacío": "1.106 kg",
+        "Peso Bruto": "1.630 kg",
+        "Capacidad de Carga": "524 kg",
+        "Capacidad de Remolque": "1.000 kg",
+        "Longitud": "3.953 mm",
+        "Anchura": "1.698 mm",
+        "Altura": "1.441 mm",
+        "Batalla": "2.460 mm",
+        "Via Delantera": "1.419 mm",
+        "Via Trasera": "1.408 mm"
+      },
+      "Resultados de Euro NCAP": {
+        "Ocupante Adulto": "★★★★☆",
+        "Peatón": "★★☆☆"
+      }
+    },
+    "section_names": [
+      "Datos de Prestaciones",
+      "Economía de Combustible",
+      "Diésel Motor",
+      "Más Datos del Motor",
+      "Tren Motriz y Chasis",
+      "Dimensiones y Practicidad",
+      "Resultados de Euro NCAP"
+    ],
+    "jsonld_date_modified": "2023-11-09",
+    "quality_flags": {
+      "minimum_required_ok": true,
+      "missing_minimum_fields": [],
+      "summary_fields_detected": 10,
+      "sections_detected": 7
+    }
+  }
+]

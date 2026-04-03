@@ -70,3 +70,34 @@ Thumbs.db
 
 # env
 .env
+# Scraping outputs
+data/raw/
+data/tmp/
+outputs/
+downloads/
+html_dumps/
+*.html
+
+# Large CSVs
+data/samples/input/*.full.csv
+data/samples/input/*_complete.csv
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Temp files
+tmp/
+temp/
+# scraping outputs grandes
+data/samples/output/*.json
+
+# html dumps futuros
+*.html
+
+# checkpoints
+*.checkpoint.json
+
+# selenium temp
+.seleniumbase/
