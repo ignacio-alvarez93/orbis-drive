@@ -1,0 +1,1099 @@
+{
+  "is_valid_dataset": false,
+  "errors": [
+    {
+      "code": "conflict_same_version",
+      "severity": "error",
+      "message": "La versión presenta conflicto interno en el campo 'fuel_type'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2008-2017)|IBIZA SC 1.4 TDI 80",
+      "generation_key": "SEAT|IBIZA|IBIZA (2008-2017)",
+      "record_indexes": [
+        4,
+        11
+      ],
+      "fields": [
+        "fuel_type"
+      ],
+      "details": {
+        "values": {
+          "DIÉSEL": [
+            4
+          ],
+          "GASOLINA": [
+            11
+          ]
+        }
+      }
+    },
+    {
+      "code": "conflict_same_version",
+      "severity": "error",
+      "message": "La versión presenta conflicto interno en el campo 'power_cv'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        6,
+        9,
+        10
+      ],
+      "fields": [
+        "power_cv"
+      ],
+      "details": {
+        "values": {
+          "110": [
+            6,
+            9
+          ],
+          "115": [
+            10
+          ]
+        }
+      }
+    },
+    {
+      "code": "conflict_same_version",
+      "severity": "error",
+      "message": "La versión presenta conflicto interno en el campo 'max_power_cv'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        6,
+        9,
+        10
+      ],
+      "fields": [
+        "max_power_cv"
+      ],
+      "details": {
+        "values": {
+          "110": [
+            6,
+            9
+          ],
+          "115": [
+            10
+          ]
+        }
+      }
+    },
+    {
+      "code": "conflict_same_version",
+      "severity": "error",
+      "message": "La versión presenta conflicto interno en el campo 'gearbox_type'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        7,
+        12
+      ],
+      "fields": [
+        "gearbox_type"
+      ],
+      "details": {
+        "values": {
+          "AT": [
+            7
+          ],
+          "MT": [
+            12
+          ]
+        }
+      }
+    },
+    {
+      "code": "conflict_same_version",
+      "severity": "error",
+      "message": "La versión presenta conflicto interno en el campo 'gear_count'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        7,
+        12
+      ],
+      "fields": [
+        "gear_count"
+      ],
+      "details": {
+        "values": {
+          "7": [
+            7
+          ],
+          "6": [
+            12
+          ]
+        }
+      }
+    },
+    {
+      "code": "conflict_displacement_l_vs_cc",
+      "severity": "error",
+      "message": "Cilindrada en litros y en cc no son coherentes dentro del mismo registro.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1984-1993)|IBIZA 1.2 L, GL, GLX",
+      "generation_key": "SEAT|IBIZA|IBIZA (1984-1993)",
+      "record_indexes": [
+        17
+      ],
+      "fields": [
+        "engine_displacement_l",
+        "engine_displacement_cc"
+      ],
+      "details": {
+        "engine_displacement_l": 1.2,
+        "engine_displacement_cc": 1800
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 3 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        0,
+        14,
+        19
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 3
+      }
+    },
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 2 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1984-1993)|IBIZA 1.7 LD, GLD",
+      "generation_key": "SEAT|IBIZA|IBIZA (1984-1993)",
+      "record_indexes": [
+        1,
+        18
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 2
+      }
+    },
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 2 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1993-2002)|IBIZA 1.6 GTI",
+      "generation_key": "SEAT|IBIZA|IBIZA (1993-2002)",
+      "record_indexes": [
+        2,
+        13
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 2
+      }
+    },
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 2 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.2 12V 70",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        3,
+        16
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 2
+      }
+    },
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 2 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2008-2017)|IBIZA SC 1.4 TDI 80",
+      "generation_key": "SEAT|IBIZA|IBIZA (2008-2017)",
+      "record_indexes": [
+        4,
+        11
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 2
+      }
+    },
+    {
+      "code": "duplicate_exact",
+      "severity": "warning",
+      "message": "Se detectaron 2 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2008-2017)|IBIZA CUPRA 1.8 TSI",
+      "generation_key": "SEAT|IBIZA|IBIZA (2008-2017)",
+      "record_indexes": [
+        5,
+        15
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "exact",
+        "records_in_group": 2
+      }
+    },
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 3 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        6,
+        9,
+        10
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 3
+      }
+    },
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 2 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        7,
+        12
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 2
+      }
+    },
+    {
+      "code": "duplicate_semantic",
+      "severity": "warning",
+      "message": "Se detectaron 2 registros para la misma versión semántica.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1984-1993)|IBIZA 1.2 L, GL, GLX",
+      "generation_key": "SEAT|IBIZA|IBIZA (1984-1993)",
+      "record_indexes": [
+        8,
+        17
+      ],
+      "fields": [],
+      "details": {
+        "duplicate_kind": "semantic",
+        "records_in_group": 2
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        0
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 100.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        0
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 126.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1993-2002)|IBIZA 1.6 GTI",
+      "generation_key": "SEAT|IBIZA|IBIZA (1993-2002)",
+      "record_indexes": [
+        2
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 800.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2008-2017)|IBIZA CUPRA 1.8 TSI",
+      "generation_key": "SEAT|IBIZA|IBIZA (2008-2017)",
+      "record_indexes": [
+        5
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 192.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2008-2017)|IBIZA CUPRA 1.8 TSI",
+      "generation_key": "SEAT|IBIZA|IBIZA (2008-2017)",
+      "record_indexes": [
+        5
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 320.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'boot_capacity_max_l'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        6
+      ],
+      "fields": [
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "value": 1.0,
+        "expected_range": [
+          50,
+          3000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        6
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 110.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        6
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 200.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_boot_range",
+      "severity": "warning",
+      "message": "boot_capacity_max_l es menor que boot_capacity_min_l.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        6
+      ],
+      "fields": [
+        "boot_capacity_min_l",
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "boot_capacity_min_l": 355.0,
+        "boot_capacity_max_l": 1.0
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'boot_capacity_max_l'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        7
+      ],
+      "fields": [
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "value": 1.0,
+        "expected_range": [
+          50,
+          3000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        7
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 150.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        7
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 250.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_boot_range",
+      "severity": "warning",
+      "message": "boot_capacity_max_l es menor que boot_capacity_min_l.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        7
+      ],
+      "fields": [
+        "boot_capacity_min_l",
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "boot_capacity_min_l": 355.0,
+        "boot_capacity_max_l": 1.0
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1984-1993)|IBIZA 1.2 L, GL, GLX",
+      "generation_key": "SEAT|IBIZA|IBIZA (1984-1993)",
+      "record_indexes": [
+        8
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 60.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1984-1993)|IBIZA 1.2 L, GL, GLX",
+      "generation_key": "SEAT|IBIZA|IBIZA (1984-1993)",
+      "record_indexes": [
+        8
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 88.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'boot_capacity_max_l'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        9
+      ],
+      "fields": [
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "value": 1.0,
+        "expected_range": [
+          50,
+          3000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        9
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 110.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        9
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 200.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_boot_range",
+      "severity": "warning",
+      "message": "boot_capacity_max_l es menor que boot_capacity_min_l.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        9
+      ],
+      "fields": [
+        "boot_capacity_min_l",
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "boot_capacity_min_l": 355.0,
+        "boot_capacity_max_l": 1.0
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'boot_capacity_max_l'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        10
+      ],
+      "fields": [
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "value": 1.0,
+        "expected_range": [
+          50,
+          3000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        10
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 110.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        10
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 200.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_boot_range",
+      "severity": "warning",
+      "message": "boot_capacity_max_l es menor que boot_capacity_min_l.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.0 ECOTSI 110",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        10
+      ],
+      "fields": [
+        "boot_capacity_min_l",
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "boot_capacity_min_l": 355.0,
+        "boot_capacity_max_l": 1.0
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'boot_capacity_max_l'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        12
+      ],
+      "fields": [
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "value": 1.0,
+        "expected_range": [
+          50,
+          3000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        12
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 150.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        12
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 250.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_boot_range",
+      "severity": "warning",
+      "message": "boot_capacity_max_l es menor que boot_capacity_min_l.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)|IBIZA 1.5 TSI 150",
+      "generation_key": "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)",
+      "record_indexes": [
+        12
+      ],
+      "fields": [
+        "boot_capacity_min_l",
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "boot_capacity_min_l": 355.0,
+        "boot_capacity_max_l": 1.0
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1993-2002)|IBIZA 1.6 GTI",
+      "generation_key": "SEAT|IBIZA|IBIZA (1993-2002)",
+      "record_indexes": [
+        13
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 800.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'boot_capacity_max_l'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        14
+      ],
+      "fields": [
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "value": 1.0,
+        "expected_range": [
+          50,
+          3000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        14
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 100.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        14
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 126.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_boot_range",
+      "severity": "warning",
+      "message": "boot_capacity_max_l es menor que boot_capacity_min_l.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        14
+      ],
+      "fields": [
+        "boot_capacity_min_l",
+        "boot_capacity_max_l"
+      ],
+      "details": {
+        "boot_capacity_min_l": 267.0,
+        "boot_capacity_max_l": 1.0
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2008-2017)|IBIZA CUPRA 1.8 TSI",
+      "generation_key": "SEAT|IBIZA|IBIZA (2008-2017)",
+      "record_indexes": [
+        15
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 192.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2008-2017)|IBIZA CUPRA 1.8 TSI",
+      "generation_key": "SEAT|IBIZA|IBIZA (2008-2017)",
+      "record_indexes": [
+        15
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 320.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1984-1993)|IBIZA 1.2 L, GL, GLX",
+      "generation_key": "SEAT|IBIZA|IBIZA (1984-1993)",
+      "record_indexes": [
+        17
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 60.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (1984-1993)|IBIZA 1.2 L, GL, GLX",
+      "generation_key": "SEAT|IBIZA|IBIZA (1984-1993)",
+      "record_indexes": [
+        17
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 88.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_power_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        19
+      ],
+      "fields": [
+        "max_power_rpm"
+      ],
+      "details": {
+        "value": 100.0,
+        "expected_range": [
+          1500,
+          12000
+        ]
+      }
+    },
+    {
+      "code": "outlier_value",
+      "severity": "warning",
+      "message": "Valor fuera de rango lógico en 'max_torque_rpm'.",
+      "semantic_key": "SEAT|IBIZA|IBIZA (2002-2009)|IBIZA 1.4 16V 100",
+      "generation_key": "SEAT|IBIZA|IBIZA (2002-2009)",
+      "record_indexes": [
+        19
+      ],
+      "fields": [
+        "max_torque_rpm"
+      ],
+      "details": {
+        "value": 126.0,
+        "expected_range": [
+          500,
+          9000
+        ]
+      }
+    },
+    {
+      "code": "generation_low_coverage",
+      "severity": "warning",
+      "message": "La generación tiene muy pocas versiones únicas en el lote.",
+      "semantic_key": null,
+      "generation_key": "SEAT|IBIZA|IBIZA (1993-2002)",
+      "record_indexes": [
+        2,
+        13
+      ],
+      "fields": [],
+      "details": {
+        "unique_versions": 1
+      }
+    }
+  ],
+  "metrics": {
+    "total_records": 20,
+    "unique_versions": 9,
+    "duplicates": 9,
+    "conflicts": 6,
+    "warnings": 48,
+    "completeness_avg": 0.6685,
+    "generations": 5
+  },
+  "generation_summary": {
+    "SEAT|IBIZA|IBIZA (2002-2009)": {
+      "records": 5,
+      "unique_versions": 2,
+      "duplicate_groups": 2,
+      "avg_completeness": 0.6823
+    },
+    "SEAT|IBIZA|IBIZA (1984-1993)": {
+      "records": 4,
+      "unique_versions": 2,
+      "duplicate_groups": 2,
+      "avg_completeness": 0.6069
+    },
+    "SEAT|IBIZA|IBIZA (1993-2002)": {
+      "records": 2,
+      "unique_versions": 1,
+      "duplicate_groups": 1,
+      "avg_completeness": 0.7339
+    },
+    "SEAT|IBIZA|IBIZA (2008-2017)": {
+      "records": 4,
+      "unique_versions": 2,
+      "duplicate_groups": 2,
+      "avg_completeness": 0.6613
+    },
+    "SEAT|IBIZA|IBIZA (2017-ACTUALIDAD)": {
+      "records": 5,
+      "unique_versions": 2,
+      "duplicate_groups": 2,
+      "avg_completeness": 0.6839
+    }
+  }
+}
