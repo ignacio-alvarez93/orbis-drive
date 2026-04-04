@@ -1,0 +1,44 @@
+[
+  {
+    "manufacturer_name": "SEAT",
+    "model_name": "Ibiza",
+    "generation_name": "Mk5",
+    "version_name": "1.0 TSI 95 FR",
+    "body_type": "hatchback",
+    "fuel_type": "gasoline",
+    "power_cv": 95,
+    "gearbox": "manual",
+    "traction": "fwd",
+    "iig_status": "passed",
+    "dvl_status": "passed",
+    "batch_status": "passed"
+  },
+  {
+    "manufacturer_name": "SEAT",
+    "model_name": "Ibiza",
+    "generation_name": "Mk5",
+    "version_name": "1.0 TSI 110 FR",
+    "body_type": "hatchback",
+    "fuel_type": "gasoline",
+    "power_cv": 110,
+    "gearbox": "manual",
+    "traction": "fwd",
+    "iig_status": "passed",
+    "dvl_status": "passed",
+    "batch_status": "passed"
+  },
+  {
+    "manufacturer_name": "SEAT",
+    "model_name": "Ibiza",
+    "generation_name": "Mk5",
+    "version_name": "1.5 TSI 150 FR DSG",
+    "body_type": "hatchback",
+    "fuel_type": "gasoline",
+    "power_cv": 150,
+    "gearbox": "automatic",
+    "traction": "fwd",
+    "iig_status": "passed",
+    "dvl_status": "passed",
+    "batch_status": "passed"
+  }
+]
