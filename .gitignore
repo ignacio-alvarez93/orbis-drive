@@ -101,3 +101,8 @@ data/samples/output/*.json
 
 # selenium temp
 .seleniumbase/
+# Bases de datos locales
+db/local/
+*.sqlite
+*.sqlite3
+*.db
