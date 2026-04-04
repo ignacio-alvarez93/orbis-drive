@@ -1,0 +1,1 @@
+"""Pipelines del sistema catálogo."""
