@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
+
 # -----------------------------------------------------------------------------
 # Constantes consumidas por parser.py
 # -----------------------------------------------------------------------------
@@ -10,6 +11,9 @@ from typing import Any
 SUMMARY_FIELD_MAP: dict[str, str] = {
     "Gasolina Motor": "engine_name",
     "Diésel Motor": "engine_name",
+    "Diesel Motor": "engine_name",
+    "GLP Motor": "engine_name",
+    "LPG Motor": "engine_name",
     "Velocidad Máxima": "top_speed_kmh",
     "0-100 Km/h Aceleración": "acceleration_0_100_s",
     "Potencia Total": "power_cv",
@@ -52,6 +56,51 @@ SECTION_FIELD_MAP: dict[str, dict[str, str]] = {
         "Capacidad Depósito": "fuel_tank_l",
     },
     "Diésel Motor": {
+        "Cilindrada": "engine_displacement_cc",
+        "Configuración": "engine_layout",
+        "Inducción": "aspiration",
+        "Potencia Máximo": "max_power_cv",
+        "Par Máximo": "max_torque_nm",
+        "Tren de Válvulas": "valvetrain",
+        "Válvulas/Cilindro": "valves_per_cylinder",
+        "Alimentación": "fuel_system",
+        "Posición": "engine_position",
+        "Orientación": "engine_orientation",
+        "Combustible": "fuel_type",
+        "Capacitad Depósito": "fuel_tank_l",
+        "Capacidad Depósito": "fuel_tank_l",
+    },
+    "Diesel Motor": {
+        "Cilindrada": "engine_displacement_cc",
+        "Configuración": "engine_layout",
+        "Inducción": "aspiration",
+        "Potencia Máximo": "max_power_cv",
+        "Par Máximo": "max_torque_nm",
+        "Tren de Válvulas": "valvetrain",
+        "Válvulas/Cilindro": "valves_per_cylinder",
+        "Alimentación": "fuel_system",
+        "Posición": "engine_position",
+        "Orientación": "engine_orientation",
+        "Combustible": "fuel_type",
+        "Capacitad Depósito": "fuel_tank_l",
+        "Capacidad Depósito": "fuel_tank_l",
+    },
+    "GLP Motor": {
+        "Cilindrada": "engine_displacement_cc",
+        "Configuración": "engine_layout",
+        "Inducción": "aspiration",
+        "Potencia Máximo": "max_power_cv",
+        "Par Máximo": "max_torque_nm",
+        "Tren de Válvulas": "valvetrain",
+        "Válvulas/Cilindro": "valves_per_cylinder",
+        "Alimentación": "fuel_system",
+        "Posición": "engine_position",
+        "Orientación": "engine_orientation",
+        "Combustible": "fuel_type",
+        "Capacitad Depósito": "fuel_tank_l",
+        "Capacidad Depósito": "fuel_tank_l",
+    },
+    "LPG Motor": {
         "Cilindrada": "engine_displacement_cc",
         "Configuración": "engine_layout",
         "Inducción": "aspiration",
@@ -168,21 +217,6 @@ def _to_int(text: Any) -> int | None:
 def _to_float(text: Any) -> float | None:
     return _first_number(text)
 
-def _to_kg_int(text: Any) -> int | None:
-    if text is None:
-        return None
-    s = str(text).strip()
-    if not s:
-        return None
-
-    digits = re.sub(r"[^\d]", "", s)
-    if not digits:
-        return None
-
-    try:
-        return int(digits)
-    except Exception:
-        return None
 
 def _to_mm_int(text: Any) -> int | None:
     if text is None:
@@ -204,20 +238,47 @@ def _to_mm_int(text: Any) -> int | None:
     if n is None:
         return None
 
-    # Si viene como 3.638 y el texto original parece una medida europea con separador de miles,
-    # lo tratamos como 3638 mm.
-    if "." in s and "mm" in lower and n < 20:
-        digits = re.sub(r"[^\d]", "", s)
-        if digits:
-            try:
-                return int(digits)
-            except Exception:
-                pass
-
-    # Fallback conservador
     if n < 20:
         return int(round(n * 1000))
     return int(round(n))
+
+
+def _to_kg_int(text: Any) -> int | None:
+    if text is None:
+        return None
+
+    s = str(text).strip()
+    if not s:
+        return None
+
+    if "/" in s:
+        parts = [p.strip() for p in s.split("/") if p.strip()]
+        if parts:
+            digits = re.sub(r"[^\d]", "", parts[-1])
+            if digits:
+                try:
+                    return int(digits)
+                except Exception:
+                    return None
+
+    if "-" in s:
+        parts = [p.strip() for p in s.split("-") if p.strip()]
+        if parts:
+            digits = re.sub(r"[^\d]", "", parts[-1])
+            if digits:
+                try:
+                    return int(digits)
+                except Exception:
+                    return None
+
+    digits = re.sub(r"[^\d]", "", s)
+    if not digits:
+        return None
+
+    try:
+        return int(digits)
+    except Exception:
+        return None
 
 
 def _extract_cc_from_text(text: Any) -> int | None:
@@ -227,7 +288,6 @@ def _extract_cc_from_text(text: Any) -> int | None:
     if not s:
         return None
 
-    # Si aparece explícitamente cc, preferir ese número
     if "cc" in s:
         digits = re.sub(r"[^\d]", "", s)
         if digits:
@@ -236,7 +296,6 @@ def _extract_cc_from_text(text: Any) -> int | None:
             except Exception:
                 return None
 
-    # Si viene como 1,5 Litro o 1.5 Litro
     n = _first_number(s)
     if n is None:
         return None
@@ -320,6 +379,82 @@ def _second_item(value: Any) -> Any:
         return value[1]
     return None
 
+
+# -----------------------------------------------------------------------------
+# Motor section helpers (dinámicos)
+# -----------------------------------------------------------------------------
+
+def _iter_motor_sections(raw_dict: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
+    sections = raw_dict.get("sections") or {}
+    if not isinstance(sections, dict):
+        return []
+
+    result: list[tuple[str, dict[str, Any]]] = []
+    for section_name, section_data in sections.items():
+        if not isinstance(section_name, str):
+            continue
+        if not isinstance(section_data, dict):
+            continue
+        if "motor" in section_name.lower():
+            result.append((section_name, section_data))
+    return result
+
+
+def _find_motor_section(raw_dict: dict[str, Any]) -> tuple[str | None, dict[str, Any] | None]:
+    motor_sections = _iter_motor_sections(raw_dict)
+    if not motor_sections:
+        return None, None
+
+    for section_name, section_data in motor_sections:
+        if section_data.get("Combustible"):
+            return section_name, section_data
+
+    return motor_sections[0]
+
+
+def _normalize_fuel_type(raw: Any) -> str | None:
+    if raw is None:
+        return None
+    text = str(raw).strip().lower()
+    if not text:
+        return None
+
+    mapping = {
+        "gasolina": "Gasolina",
+        "diésel": "Diésel",
+        "diesel": "Diésel",
+        "glp": "GLP",
+        "lpg": "GLP",
+        "eléctrico": "Eléctrico",
+        "electrico": "Eléctrico",
+        "híbrido": "Híbrido",
+        "hibrido": "Híbrido",
+    }
+    return mapping.get(text, str(raw).strip())
+
+
+def _fuel_type_from_motor_section_name(section_name: str | None) -> str | None:
+    if not section_name:
+        return None
+    lower = section_name.lower()
+
+    if "gasolina" in lower:
+        return "Gasolina"
+    if "diésel" in lower or "diesel" in lower:
+        return "Diésel"
+    if "glp" in lower or "lpg" in lower:
+        return "GLP"
+    if "eléctr" in lower or "electr" in lower:
+        return "Eléctrico"
+    if "híbr" in lower or "hibr" in lower:
+        return "Híbrido"
+
+    return None
+
+
+# -----------------------------------------------------------------------------
+# Parsing helpers
+# -----------------------------------------------------------------------------
 
 def _extract_from_breadcrumbs(raw_dict: dict[str, Any]) -> tuple[str | None, str | None, str | None, str | None]:
     manufacturer_name = _breadcrumb_name(raw_dict, 1)
@@ -486,21 +621,6 @@ def _parse_gearbox_label_and_count(value: Any) -> tuple[str | None, int | None]:
     return text, _to_int(text)
 
 
-def _parse_towing_capacity(value: Any) -> tuple[float | None, float | None]:
-    text = _clean_text(value)
-    if not text:
-        return None, None
-    nums = re.findall(r"\d+(?:[.,]\d+)?", text)
-    if not nums:
-        return None, None
-    if len(nums) == 1:
-        v = float(nums[0].replace(",", "."))
-        return v, None
-    first = float(nums[0].replace(",", "."))
-    second = float(nums[1].replace(",", "."))
-    return second, first
-
-
 # -----------------------------------------------------------------------------
 # Mapping principal
 # -----------------------------------------------------------------------------
@@ -528,61 +648,34 @@ def map_raw_to_clean(raw_dict: dict[str, Any], contract: dict[str, Any]) -> dict
         _get_meta(raw_dict, "og_description"),
     )
 
+    motor_section_name, motor_section = _find_motor_section(raw_dict)
+    motor_section = motor_section or {}
+
     drive_type_raw = _coalesce(
         _get_section_value(raw_dict, "Tren Motriz y Chasis", "Ruedas Motrices"),
         _get_summary(raw_dict, "Disposición del Tren Motriz"),
     )
     drive_type, drive_type_label = _normalize_drive_type(drive_type_raw)
 
-    power_max = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Potencia Máximo"),
-        _get_section_value(raw_dict, "Diésel Motor", "Potencia Máximo"),
-    )
-    torque_max = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Par Máximo"),
-        _get_section_value(raw_dict, "Diésel Motor", "Par Máximo"),
-    )
-    displacement = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Cilindrada"),
-        _get_section_value(raw_dict, "Diésel Motor", "Cilindrada"),
-    )
-    fuel_type = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Combustible"),
-        _get_section_value(raw_dict, "Diésel Motor", "Combustible"),
-    )
-    engine_layout = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Configuración"),
-        _get_section_value(raw_dict, "Diésel Motor", "Configuración"),
-    )
-    aspiration = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Inducción"),
-        _get_section_value(raw_dict, "Diésel Motor", "Inducción"),
-    )
-    fuel_system = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Alimentación"),
-        _get_section_value(raw_dict, "Diésel Motor", "Alimentación"),
-    )
-    valvetrain = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Tren de Válvulas"),
-        _get_section_value(raw_dict, "Diésel Motor", "Tren de Válvulas"),
-    )
-    valves_pc_raw = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Válvulas/Cilindro"),
-        _get_section_value(raw_dict, "Diésel Motor", "Válvulas/Cilindro"),
-    )
-    engine_position = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Posición"),
-        _get_section_value(raw_dict, "Diésel Motor", "Posición"),
-    )
-    engine_orientation = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Orientación"),
-        _get_section_value(raw_dict, "Diésel Motor", "Orientación"),
-    )
+    power_max = motor_section.get("Potencia Máximo")
+    torque_max = motor_section.get("Par Máximo")
+    displacement = motor_section.get("Cilindrada")
+
+    fuel_type = _normalize_fuel_type(motor_section.get("Combustible"))
+    if not fuel_type:
+        fuel_type = _fuel_type_from_motor_section_name(motor_section_name)
+
+    engine_layout = motor_section.get("Configuración")
+    aspiration = motor_section.get("Inducción")
+    fuel_system = motor_section.get("Alimentación")
+    valvetrain = motor_section.get("Tren de Válvulas")
+    valves_pc_raw = motor_section.get("Válvulas/Cilindro")
+    engine_position = motor_section.get("Posición")
+    engine_orientation = motor_section.get("Orientación")
+
     fuel_tank_raw = _coalesce(
-        _get_section_value(raw_dict, "Gasolina Motor", "Capacitad Depósito"),
-        _get_section_value(raw_dict, "Gasolina Motor", "Capacidad Depósito"),
-        _get_section_value(raw_dict, "Diésel Motor", "Capacitad Depósito"),
-        _get_section_value(raw_dict, "Diésel Motor", "Capacidad Depósito"),
+        motor_section.get("Capacitad Depósito"),
+        motor_section.get("Capacidad Depósito"),
     )
 
     bore, stroke, bore_stroke_text = _parse_bore_stroke(
@@ -629,10 +722,6 @@ def map_raw_to_clean(raw_dict: dict[str, Any], contract: dict[str, Any]) -> dict
         )
     )
 
-    towing_braked, towing_unbraked = _parse_towing_capacity(
-        _get_section_value(raw_dict, "Dimensiones y Practicidad", "Capacidad de Remolque")
-    )
-
     kerb = _coalesce(
         _get_section_value(raw_dict, "Dimensiones y Practicidad", "Peso en Vacío"),
         _get_summary(raw_dict, "Peso en Vacío"),
@@ -672,7 +761,14 @@ def map_raw_to_clean(raw_dict: dict[str, Any], contract: dict[str, Any]) -> dict
 
     clean["body_type"] = body_type
     clean["trim"] = None
-    clean["facelift_status"] = "preactualizado" if meta_description and "preactualizado" in meta_description.lower() else None
+
+    if meta_description and "preactualizado" in meta_description.lower():
+        clean["facelift_status"] = "preactualizado"
+    elif meta_description and "actualizado" in meta_description.lower():
+        clean["facelift_status"] = "actualizado"
+    else:
+        clean["facelift_status"] = None
+
     clean["doors"] = doors
     clean["seats"] = seats
 
@@ -693,19 +789,25 @@ def map_raw_to_clean(raw_dict: dict[str, Any], contract: dict[str, Any]) -> dict
     clean["drive_type"] = drive_type
     clean["drive_type_label"] = drive_type_label
 
-    clean["engine_name"] = _coalesce(_get_summary(raw_dict, "Gasolina Motor"), _get_summary(raw_dict, "Diésel Motor"))
+    clean["engine_name"] = _coalesce(
+        _get_summary(raw_dict, "Gasolina Motor"),
+        _get_summary(raw_dict, "Diésel Motor"),
+        _get_summary(raw_dict, "Diesel Motor"),
+        _get_summary(raw_dict, "GLP Motor"),
+        _get_summary(raw_dict, "LPG Motor"),
+    )
     clean["engine_code"] = None
     clean["engine_family"] = None
     clean["engine_type"] = fuel_type
-    clean["engine_layout"] = engine_layout
+    clean["engine_layout"] = _clean_text(engine_layout)
     clean["cylinders"] = _to_int(engine_layout)
     clean["valves_total"] = _parse_valves_total(valves_pc_raw)
     clean["valves_per_cylinder"] = _parse_valves_per_cylinder(valves_pc_raw)
-    clean["valvetrain"] = valvetrain
-    clean["aspiration"] = aspiration
-    clean["fuel_system"] = fuel_system
-    clean["engine_position"] = engine_position
-    clean["engine_orientation"] = engine_orientation
+    clean["valvetrain"] = _clean_text(valvetrain)
+    clean["aspiration"] = _clean_text(aspiration)
+    clean["fuel_system"] = _clean_text(fuel_system)
+    clean["engine_position"] = _clean_text(engine_position)
+    clean["engine_orientation"] = _clean_text(engine_orientation)
 
     clean["engine_displacement_cc"] = _parse_engine_displacement_cc(displacement)
     clean["engine_displacement_l"] = _parse_engine_displacement_l(displacement)

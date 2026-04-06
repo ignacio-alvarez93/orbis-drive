@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from src.catalogo.validacion_lote.lote_validator import LoteValidator
+from src.catalogo.iig.iig_catalogo import IIG_Catalogo
 
 
 def safe_print(label, value):
@@ -12,15 +12,16 @@ def safe_print(label, value):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True)
+    parser.add_argument("--contract", required=True)
     args = parser.parse_args()
 
     with open(args.input, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    validator = LoteValidator()
-    result = validator.validate(data)
+    iig = IIG_Catalogo(contract_path=args.contract)
+    result = iig.validate_batch(data)
 
-    print("\nRESULTADO VALIDACION DE LOTE\n")
+    print("\nRESULTADO IIG\n")
     safe_print("Tipo", type(result).__name__)
 
     print("\nDETALLE\n")
@@ -34,7 +35,6 @@ def main():
             safe_print(attr, value)
         except Exception as e:
             safe_print(attr, f"<error leyendo atributo: {e}>")
-
 
 if __name__ == "__main__":
     main()

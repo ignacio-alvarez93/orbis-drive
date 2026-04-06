@@ -50,7 +50,7 @@ class TVersionesPilotIngestionPipeline:
         rows = json.loads(dataset_file.read_text(encoding="utf-8"))
         if not isinstance(rows, list):
             raise PilotIngestionError("El dataset de ingestión debe ser una lista JSON.")
-        if not (3 <= len(rows) <= 5):
+        if not (3 <= len(rows) <= 10):
             raise PilotIngestionError(
                 f"Lote piloto inválido: se esperaban entre 3 y 5 registros y llegaron {len(rows)}"
             )
