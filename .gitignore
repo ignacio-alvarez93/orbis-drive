@@ -106,3 +106,13 @@ db/local/
 *.sqlite
 *.sqlite3
 *.db
+__pycache__/
+*.pyc
+.pytest_cache/
+db/local/
+*.db
+*.sqlite
+*.log
+data/samples/output/catalogo_pipeline_*/
+data/samples/output/seat_leon_pipeline_*/
+data/samples/output/versiones_scraper_v3*/
