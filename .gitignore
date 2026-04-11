@@ -116,3 +116,4 @@ db/local/
 data/samples/output/catalogo_pipeline_*/
 data/samples/output/seat_leon_pipeline_*/
 data/samples/output/versiones_scraper_v3*/
+data/samples/output/smoke_orchestrator_scraper/
