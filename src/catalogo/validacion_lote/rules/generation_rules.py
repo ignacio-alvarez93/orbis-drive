@@ -4,14 +4,10 @@ from collections import defaultdict
 from typing import Any
 
 from ..lote_result import ValidationIssue
-
-
-def build_generation_key(record: dict[str, Any]) -> str:
-    return "|".join(
-        " ".join(str(record.get(field, "")).strip().upper().split())
-        for field in ("manufacturer_name", "model_name", "generation_name")
-    )
-
+from src.catalogo.validacion_lote.rules.semantic_key_v2 import (
+    build_generation_key,
+    build_semantic_key_v2,
+)
 
 def compute_record_completeness(record: dict[str, Any]) -> float:
     ignored = {
@@ -22,7 +18,6 @@ def compute_record_completeness(record: dict[str, Any]) -> float:
         return 0.0
     populated = sum(1 for key in relevant_keys if record.get(key) is not None)
     return populated / len(relevant_keys)
-
 
 def validate_generations(
     records: list[dict[str, Any]],
@@ -37,10 +32,7 @@ def validate_generations(
     for idx, record in enumerate(records):
         generation_key = build_generation_key(record)
         generation_records[generation_key].append((idx, record))
-        semantic_key = "|".join(
-            " ".join(str(record.get(field, "")).strip().upper().split())
-            for field in ("manufacturer_name", "model_name", "generation_name", "version_name")
-        )
+        semantic_key = build_semantic_key_v2(record)
         generation_unique_versions[generation_key].add(semantic_key)
         completeness_values.append(compute_record_completeness(record))
 

@@ -3,7 +3,9 @@ from __future__ import annotations
 from typing import Any
 
 from ..lote_result import ValidationIssue
-
+from src.catalogo.validacion_lote.rules.semantic_key_v2 import (
+    build_semantic_key_v2,
+)
 
 RANGES = {
     "boot_capacity_max_l": (50, 3000),
@@ -17,7 +19,6 @@ RANGES = {
     "engine_displacement_l": (0.2, 10),
 }
 
-
 def _to_float(value: Any) -> float | None:
     if value is None:
         return None
@@ -26,14 +27,10 @@ def _to_float(value: Any) -> float | None:
     except (TypeError, ValueError):
         return None
 
-
 def detect_outliers(records: list[dict[str, Any]]) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
     for idx, record in enumerate(records):
-        semantic_key = "|".join(
-            " ".join(str(record.get(k, "")).strip().upper().split())
-            for k in ("manufacturer_name", "model_name", "generation_name", "version_name")
-        )
+        semantic_key = build_semantic_key_v2(record)
         for field, (low, high) in RANGES.items():
             value = _to_float(record.get(field))
             if value is None:

@@ -3,9 +3,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from .lote_result import DatasetMetrics, LoteValidationResult, ValidationIssue
+from .lote_result import DatasetMetrics, LoteValidationResult
 from .rules.conflicts import detect_group_conflicts, detect_internal_record_conflicts
-from .rules.duplicates import build_semantic_key, detect_duplicates
+from .rules.duplicates import detect_duplicates
+from .rules.semantic_key_v2 import build_semantic_key_v2
 from .rules.generation_rules import validate_generations
 from .rules.outliers import detect_outliers
 
@@ -27,7 +28,7 @@ class LoteValidator:
             raise TypeError("every record must be a dictionary")
 
         duplicate_issues, grouped_by_semantic = detect_duplicates(records)
-        conflict_issues = detect_group_conflicts(grouped_by_semantic)
+        conflict_issues = detect_group_conflicts(records)
         conflict_issues.extend(detect_internal_record_conflicts(records))
         outlier_issues = detect_outliers(records)
         generation_warnings, generation_summary, completeness_avg = validate_generations(
@@ -42,7 +43,7 @@ class LoteValidator:
 
         metrics = DatasetMetrics(
             total_records=len(records),
-            unique_versions=len({build_semantic_key(record) for record in records}),
+            unique_versions=len({build_semantic_key_v2(record) for record in records}),
             duplicates=len(duplicate_issues),
             conflicts=len(errors),
             warnings=len(warnings),
