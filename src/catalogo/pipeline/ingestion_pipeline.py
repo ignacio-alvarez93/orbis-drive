@@ -5,6 +5,7 @@ import uuid
 from pathlib import Path
 from typing import Any
 
+from src.catalogo.enrichment.core.enrichment_engine import EnrichmentEngine
 from src.catalogo.loaders.ingestion_report import IngestionReport, RecordResult
 from src.catalogo.loaders.reference_resolver import ReferenceResolver
 from src.catalogo.loaders.t_versiones_loader import TVersionesLoader
@@ -20,6 +21,7 @@ class TVersionesPilotIngestionPipeline:
         self.strict_batch = strict_batch
         self.resolver = ReferenceResolver(conn)
         self.loader = TVersionesLoader(conn)
+        self.enrichment_engine = EnrichmentEngine()
 
     def _prevalidate_row(self, row: dict[str, Any], row_index: int) -> None:
         required_pipeline_flags = {
@@ -58,6 +60,26 @@ class TVersionesPilotIngestionPipeline:
             row["_source_dataset"] = str(dataset_file)
         return rows
 
+    def _build_row_for_resolution(
+        self,
+        row: dict[str, Any],
+    ) -> tuple[dict[str, Any], dict[str, Any]]:
+        """
+        Ejecuta la capa ENRICHMENT sin modificar la verdad base.
+        Devuelve:
+        - payload operativo para ID_RESOLUTION / loader
+        - resultado serializable de enrichment para trazabilidad
+        """
+        enrichment_result = self.enrichment_engine.run(row)
+
+        row_for_resolution = {
+            **row,
+            **enrichment_result.enriched_fields,
+            "_enrichment": enrichment_result.to_dict(),
+        }
+
+        return row_for_resolution, enrichment_result.to_dict()
+
     def run(self, dataset_path: str) -> IngestionReport:
         rows = self._load_rows(dataset_path)
         ingestion_run_id = str(uuid.uuid4())
@@ -72,14 +94,28 @@ class TVersionesPilotIngestionPipeline:
             for idx, row in enumerate(rows, start=1):
                 try:
                     self._prevalidate_row(row, idx)
-                    refs = self.resolver.resolve_all(row)
+
+                    row_for_resolution, enrichment_payload = self._build_row_for_resolution(row)
+
+                    refs = self.resolver.resolve_all(row_for_resolution)
                     result = self.loader.insert_one(
                         row_index=idx,
-                        row=row,
+                        row=row_for_resolution,
                         refs=refs,
                         ingestion_run_id=ingestion_run_id,
                     )
+
+                    if getattr(result, "record_ref", None) is None:
+                        result.record_ref = {}
+
+                    if isinstance(result.record_ref, dict):
+                        result.record_ref["enrichment"] = {
+                            "enriched_fields": enrichment_payload.get("enriched_fields", {}),
+                            "metrics": enrichment_payload.get("metrics", {}),
+                        }
+
                     report.add(result)
+
                 except Exception as exc:
                     result = RecordResult(
                         row_index=idx,

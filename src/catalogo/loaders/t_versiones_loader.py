@@ -6,11 +6,12 @@ from src.catalogo.loaders.reference_resolver import ResolvedReferences
 
 class TVersionesLoader:
     """
-    Loader v2 para T_Versiones.
+    Loader v3 para T_Versiones.
 
     Principios:
-    - Mantiene el control anti-duplicado probado por (version_name_canonical, generation_id)
-    - Inserta todas las columnas reales de T_Versiones que existan en el dataset resuelto
+    - Anti-duplicado alineado con semantic_key_v2:
+      (version_name_canonical, generation_id, production_start_year, production_end_year)
+    - Inserta todas las columnas reales de T_Versiones presentes en el dataset resuelto
     - No inventa datos: si el campo no existe en el row, persiste NULL
     """
 
@@ -162,16 +163,29 @@ class TVersionesLoader:
         rows = self.conn.execute(f"PRAGMA table_info({table_name})").fetchall()
         return {row[1] for row in rows}
 
-    def exists(self, version_name_canonical: str, generation_id: str) -> bool:
+    def exists(
+        self,
+        version_name_canonical: str,
+        generation_id: str,
+        production_start_year,
+        production_end_year,
+    ) -> bool:
         cur = self.conn.execute(
             """
             SELECT 1
             FROM T_Versiones
             WHERE version_name_canonical = ?
               AND generation_id = ?
+              AND production_start_year IS ?
+              AND production_end_year IS ?
             LIMIT 1
             """,
-            (version_name_canonical, generation_id),
+            (
+                version_name_canonical,
+                generation_id,
+                production_start_year,
+                production_end_year,
+            ),
         )
         return cur.fetchone() is not None
 
@@ -213,27 +227,42 @@ class TVersionesLoader:
         version_id = row.get("version_id")
         version_name = row.get("version_name")
         version_name_canonical = row.get("version_name_canonical")
+        production_start_year = row.get("production_start_year")
+        production_end_year = row.get("production_end_year")
 
         if not version_id:
             raise ValueError("Falta 'version_id' en el dataset resuelto.")
         if not version_name_canonical:
             raise ValueError("Falta 'version_name_canonical' en el dataset resuelto.")
 
-        duplicate_key = f"{version_name_canonical}|{refs.generation_id}"
+        duplicate_key = (
+            f"{version_name_canonical}|{refs.generation_id}|"
+            f"{production_start_year}|{production_end_year}"
+        )
 
-        if self.exists(version_name_canonical, refs.generation_id):
+        if self.exists(
+            version_name_canonical,
+            refs.generation_id,
+            production_start_year,
+            production_end_year,
+        ):
             return RecordResult(
                 row_index=row_index,
                 status="skipped_duplicate",
                 table="T_Versiones",
                 semantic_key=duplicate_key,
-                message="Registro omitido por duplicado según (version_name_canonical, generation_id).",
+                message=(
+                    "Registro omitido por duplicado según "
+                    "(version_name_canonical, generation_id, production_start_year, production_end_year)."
+                ),
                 record_ref={
                     "version_id": version_id,
                     "manufacturer_id": refs.manufacturer_id,
                     "model_id": refs.model_id,
                     "generation_id": refs.generation_id,
                     "version_name": version_name,
+                    "production_start_year": production_start_year,
+                    "production_end_year": production_end_year,
                 },
             )
 
@@ -259,5 +288,7 @@ class TVersionesLoader:
                 "model_id": refs.model_id,
                 "generation_id": refs.generation_id,
                 "version_name": version_name,
+                "production_start_year": production_start_year,
+                "production_end_year": production_end_year,
             },
         )

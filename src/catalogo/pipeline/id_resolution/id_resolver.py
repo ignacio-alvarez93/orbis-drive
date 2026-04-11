@@ -26,6 +26,47 @@ def _slug(text: str | None) -> str:
     return value.replace(" ", "_")
 
 
+def slugify(text: str | None) -> str:
+    return _slug(text)
+
+
+def _year_token(value: Any) -> str:
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def canonicalize_version_name(version_name: str | None) -> str:
+    return _slug(version_name)
+
+
+def build_version_id(
+    generation_id: str,
+    version_name: str | None,
+    production_start_year: Any = None,
+    production_end_year: Any = None,
+) -> str:
+    """
+    Compatibilidad legacy:
+    - si no hay años, devuelve generation_id + "_" + canonical_name
+    - si hay años, añade solo los tokens no vacíos
+    """
+    parts = [
+        str(generation_id).strip(),
+        canonicalize_version_name(version_name),
+    ]
+
+    start = _year_token(production_start_year)
+    end = _year_token(production_end_year)
+
+    if start:
+        parts.append(start)
+    if end:
+        parts.append(end)
+
+    return "_".join(parts)
+
+
 IBIZA_GENERATION_ALIASES = {
     "mk5": ["ibiza 2017 actualidad", "ibiza 2017-actualidad"],
     "mk4": ["ibiza 2008 2017", "ibiza 2008-2017"],
@@ -36,12 +77,19 @@ IBIZA_GENERATION_ALIASES = {
 
 
 class IDResolver:
-    def __init__(self, db_path: str):
-        self.conn = sqlite3.connect(db_path)
+    def __init__(self, db_or_conn: str | sqlite3.Connection):
+        self._owns_connection = not isinstance(db_or_conn, sqlite3.Connection)
+
+        if isinstance(db_or_conn, sqlite3.Connection):
+            self.conn = db_or_conn
+        else:
+            self.conn = sqlite3.connect(db_or_conn)
+
         self.conn.row_factory = sqlite3.Row
 
     def close(self) -> None:
-        self.conn.close()
+        if self._owns_connection:
+            self.conn.close()
 
     def resolve_manufacturer_id(self, manufacturer_name: str) -> str:
         target = _canon(manufacturer_name)
@@ -114,7 +162,10 @@ class IDResolver:
         if aliases:
             alias_set = {_canon(a) for a in aliases}
             for row in rows:
-                if _canon(row["generation_name"]) in alias_set or _canon(row["generation_name_canonical"]) in alias_set:
+                if (
+                    _canon(row["generation_name"]) in alias_set
+                    or _canon(row["generation_name_canonical"]) in alias_set
+                ):
                     return row["generation_id"]
 
         raise IDResolutionError(
@@ -135,8 +186,14 @@ class IDResolver:
         manufacturer_id = self.resolve_manufacturer_id(manufacturer_name)
         model_id = self.resolve_model_id(manufacturer_id, model_name)
         generation_id = self.resolve_generation_id(model_id, generation_name)
-        version_name_canonical = _slug(version_name)
-        version_id = f"{generation_id}__{version_name_canonical}"
+        version_name_canonical = canonicalize_version_name(version_name)
+
+        version_id = build_version_id(
+            generation_id=generation_id,
+            version_name=version_name,
+            production_start_year=row.get("production_start_year"),
+            production_end_year=row.get("production_end_year"),
+        )
 
         resolved = dict(row)
         resolved["manufacturer_id"] = manufacturer_id
@@ -154,6 +211,9 @@ class IDResolver:
 
         return resolved
 
+    def transform_row(self, row: dict[str, Any]) -> dict[str, Any]:
+        return self.resolve_row(row=row, row_index=1)
+
 
 def resolve_t_versiones_ids(db_path: str, input_path: str, output_path: str) -> list[dict[str, Any]]:
     input_rows = json.loads(Path(input_path).read_text(encoding="utf-8"))
@@ -164,10 +224,7 @@ def resolve_t_versiones_ids(db_path: str, input_path: str, output_path: str) -> 
     try:
         output_rows = []
         for idx, row in enumerate(input_rows, start=1):
-            try:
-                output_rows.append(resolver.resolve_row(row, idx))
-            except IDResolutionError as exc:
-                raise IDResolutionError(str(exc)) from exc
+            output_rows.append(resolver.resolve_row(row, idx))
 
         Path(output_path).write_text(
             json.dumps(output_rows, ensure_ascii=False, indent=2),
@@ -179,5 +236,18 @@ def resolve_t_versiones_ids(db_path: str, input_path: str, output_path: str) -> 
 
 
 def resolve_dataset_file(db_path: str, input_path: str, output_path: str) -> list[dict[str, Any]]:
-    """Alias de compatibilidad para el runner actual."""
     return resolve_t_versiones_ids(db_path=db_path, input_path=input_path, output_path=output_path)
+
+
+TVersionesIDResolver = IDResolver
+
+__all__ = [
+    "IDResolutionError",
+    "IDResolver",
+    "TVersionesIDResolver",
+    "slugify",
+    "canonicalize_version_name",
+    "build_version_id",
+    "resolve_t_versiones_ids",
+    "resolve_dataset_file",
+]
