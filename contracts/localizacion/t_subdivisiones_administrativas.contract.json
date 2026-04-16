@@ -1,0 +1,95 @@
+{
+  "contract_name": "t_subdivisiones_administrativas",
+  "version": "1.0.0",
+  "description": "Contrato operativo de entrada para la carga controlada de subdivisiones administrativas desde fuente España (CCAA + provincias) hacia T_Subdivisiones_Administrativas.",
+  "entity": "T_Subdivisiones_Administrativas",
+  "strict_mode": true,
+  "additional_properties": false,
+  "input_mode": "source_staging",
+  "required_fields": [
+    "CCAA",
+    "Cod_CCAA",
+    "Provincia",
+    "Codigo"
+  ],
+  "optional_fields": [
+    "Texto"
+  ],
+  "fields": {
+    "CCAA": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Nombre de la comunidad autónoma fuente. Se transformará en subdivisión de nivel 1."
+    },
+    "Cod_CCAA": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Código fuente de la comunidad autónoma."
+    },
+    "Provincia": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Nombre de la provincia fuente. Se transformará en subdivisión de nivel 2."
+    },
+    "Texto": {
+      "type": "string",
+      "required": false,
+      "allow_null": true,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Campo descriptivo auxiliar de la fuente. No forma parte de la identidad persistible."
+    },
+    "Codigo": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Código fuente de la provincia."
+    }
+  },
+  "normalization_hints": {
+    "strip_whitespace": true,
+    "empty_string_to_null_fields": [
+      "Texto"
+    ],
+    "explodes_into_multiple_records": true,
+    "target_records": [
+      {
+        "level": 1,
+        "type": "comunidad_autonoma",
+        "source_name_field": "CCAA",
+        "source_code_field": "Cod_CCAA"
+      },
+      {
+        "level": 2,
+        "type": "provincia",
+        "source_name_field": "Provincia",
+        "source_code_field": "Codigo",
+        "parent_source_name_field": "CCAA",
+        "parent_source_code_field": "Cod_CCAA"
+      }
+    ]
+  },
+  "validation_rules": {
+    "reject_unknown_fields": true,
+    "reject_missing_required_fields": true,
+    "reject_invalid_types": true,
+    "reject_empty_required_strings": true
+  },
+  "semantic_rules": {
+    "note": "La identidad semántica final no se valida sobre la fila fuente sino sobre los registros normalizados generados a partir de ella."
+  },
+  "identity_resolution": {
+    "note": "La resolución de identidad persistible se aplicará sobre los registros ya normalizados por nivel y jerarquía."
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "contract_name": "t_localidades",
+  "version": "1.0.0",
+  "description": "Contrato operativo de entrada para la carga controlada de localidades desde fuente INE España hacia T_Localidades.",
+  "entity": "T_Localidades",
+  "strict_mode": true,
+  "additional_properties": false,
+  "input_mode": "source_staging",
+  "required_fields": [
+    "CPRO",
+    "CMUN",
+    "NOMBRE"
+  ],
+  "optional_fields": [
+    "DC"
+  ],
+  "fields": {
+    "CPRO": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Código de provincia fuente."
+    },
+    "CMUN": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Código de municipio fuente."
+    },
+    "DC": {
+      "type": "string",
+      "required": false,
+      "allow_null": true,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Dígito de control fuente."
+    },
+    "NOMBRE": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Nombre de la localidad fuente."
+    }
+  },
+  "validation_rules": {
+    "reject_unknown_fields": true,
+    "reject_missing_required_fields": true,
+    "reject_invalid_types": true,
+    "reject_empty_required_strings": true
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "contract_name": "t_paises",
+  "version": "1.0.0",
+  "description": "Contrato operativo de entrada para la carga controlada de T_Paises en Orbis Drive.",
+  "entity": "T_Paises",
+  "strict_mode": true,
+  "additional_properties": false,
+  "primary_semantic_key": [
+    "iso2"
+  ],
+  "required_fields": [
+    "es",
+    "iso2",
+    "iso3"
+  ],
+  "optional_fields": [
+    "en",
+    "fr",
+    "cat",
+    "region_global"
+  ],
+  "fields": {
+    "es": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Nombre principal del país en español. Se usará como nombre base inicial en T_Paises."
+    },
+    "en": {
+      "type": "string",
+      "required": false,
+      "allow_null": true,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Nombre alternativo del país en inglés."
+    },
+    "fr": {
+      "type": "string",
+      "required": false,
+      "allow_null": true,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Nombre alternativo del país en francés."
+    },
+    "cat": {
+      "type": "string",
+      "required": false,
+      "allow_null": true,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Nombre alternativo del país en catalán."
+    },
+    "iso2": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "uppercase": true,
+      "min_length": 2,
+      "max_length": 2,
+      "pattern": "^[A-Z]{2}$",
+      "description": "Código ISO alpha-2 del país. Clave semántica principal inicial."
+    },
+    "iso3": {
+      "type": "string",
+      "required": true,
+      "allow_null": false,
+      "allow_empty": false,
+      "trim": true,
+      "uppercase": true,
+      "min_length": 3,
+      "max_length": 3,
+      "pattern": "^[A-Z]{3}$",
+      "description": "Código ISO alpha-3 del país. Campo obligatorio de control y apoyo a validación."
+    },
+    "region_global": {
+      "type": "string",
+      "required": false,
+      "allow_null": true,
+      "allow_empty": false,
+      "trim": true,
+      "description": "Región global opcional. No obligatoria en la fase inicial."
+    }
+  },
+  "normalization_hints": {
+    "strip_whitespace": true,
+    "uppercase_fields": [
+      "iso2",
+      "iso3"
+    ],
+    "empty_string_to_null_fields": [
+      "en",
+      "fr",
+      "cat",
+      "region_global"
+    ]
+  },
+  "validation_rules": {
+    "reject_unknown_fields": true,
+    "reject_missing_required_fields": true,
+    "reject_invalid_types": true,
+    "reject_empty_required_strings": true
+  },
+  "semantic_rules": {
+    "duplicate_policy": "reject_conflicting_duplicates",
+    "exact_duplicate_policy": "allow_deduplicable",
+    "conflict_definition": "Mismo iso2 con distinto contenido semántico relevante dentro del mismo lote."
+  },
+  "identity_resolution": {
+    "entity_id_strategy": "country__{iso2_lower}",
+    "lookup_keys": [
+      "iso2",
+      "iso3"
+    ]
+  }
+}
