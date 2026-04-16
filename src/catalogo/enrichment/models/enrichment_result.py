@@ -30,9 +30,12 @@ class EnrichmentResult:
         confidence: str = "deterministic",
     ) -> None:
         """
-        Añade un campo enriquecido sin sobrescribir verdad base ni enriquecimientos previos.
+        Añade un campo enriquecido sin sobrescribir verdad base válida.
+        Permite rellenar campos existentes si están a NULL.
         """
-        if field_name in self.original_data:
+
+        # SOLO bloquear si el campo existe Y tiene valor real
+        if field_name in self.original_data and self.original_data[field_name] is not None:
             return
 
         if field_name in self.enriched_fields:
