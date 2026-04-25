@@ -1,0 +1,36 @@
+{
+  "entity": "T_Concesionarios",
+  "version": "1.0",
+  "description": "Contrato unificado de concesionarios multi-fuente",
+
+  "fields": {
+
+    "dealer_name_raw": { "type": "string", "required": true },
+    "dealer_type_raw": { "type": "string", "required": false },
+
+    "address_raw": { "type": "string", "required": false },
+    "location_raw": { "type": "string", "required": true },
+    "postal_code_raw": { "type": "string", "required": false },
+
+    "phone_raw": { "type": "string", "required": false },
+    "email_raw": { "type": "string", "required": false },
+    "website_raw": { "type": "string", "required": false },
+
+    "instagram_raw": { "type": "string", "required": false },
+    "facebook_raw": { "type": "string", "required": false },
+    "tiktok_raw": { "type": "string", "required": false },
+    "youtube_raw": { "type": "string", "required": false },
+    "google_business_profile_raw": { "type": "string", "required": false },
+
+    "brands_raw": { "type": "array", "items": "string", "required": false },
+
+    "description_raw": { "type": "string", "required": false },
+
+    "source_name": { "type": "string", "required": true },
+    "source_url": { "type": "string", "required": true },
+    "source_row_url": { "type": "string", "required": true },
+    "record_external_id": { "type": "string", "required": true },
+
+    "scrape_date": { "type": "string", "format": "date", "required": true }
+  }
+}
