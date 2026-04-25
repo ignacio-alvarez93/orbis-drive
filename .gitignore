@@ -117,3 +117,15 @@ data/samples/output/catalogo_pipeline_*/
 data/samples/output/seat_leon_pipeline_*/
 data/samples/output/versiones_scraper_v3*/
 data/samples/output/smoke_orchestrator_scraper/
+__pycache__/
+*.pyc
+.pytest_cache/
+db/local/*.db
+db/local/backups/
+data/external/concesionarios/**/snapshots/
+data/external/concesionarios/**/html/
+data/external/concesionarios/**/cleaned/
+data/external/concesionarios/**/logs/
+data/external/
+data/samples/
+notepad.txt

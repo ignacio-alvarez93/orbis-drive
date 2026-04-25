@@ -43,7 +43,13 @@ SCRAPER_RUNNER = REPO_ROOT / "scripts" / "scraping" / "run_scraper_versiones.py"
 ID_RESOLUTION_RUNNER = REPO_ROOT / "scripts" / "ingestion" / "run_t_versiones_id_resolution.py"
 INGESTION_RUNNER = REPO_ROOT / "scripts" / "ingestion" / "run_t_versiones_ingestion.py"
 
+CONCESIONARIOS_BASE = REPO_ROOT / "data" / "external" / "concesionarios"
+CONCESIONARIOS_SAMPLE_BASE = REPO_ROOT / "data" / "samples" / "concesionarios"
 
+CONCESIONARIOS_BUILD_MERGED_RUNNER = REPO_ROOT / "scripts" / "ingestion" / "build_concesionarios_merged_input.py"
+CONCESIONARIOS_PIPELINE_RUNNER = REPO_ROOT / "scripts" / "ingestion" / "run_t_concesionarios_ingestion.py"
+CONCESIONARIOS_DB_INGESTION_RUNNER = REPO_ROOT / "scripts" / "ingestion" / "run_t_concesionarios_db_ingestion.py"
+CONCESIONARIOS_AUDIT_PENDING_RUNNER = REPO_ROOT / "scripts" / "analysis" / "audit_concesionarios_pending.py"
 @dataclass
 class StepResult:
     name: str
@@ -1104,7 +1110,196 @@ def capture_generic_html() -> None:
 # ---------------------------------------------------------------------------
 # Menus
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Concesionarios
+# ---------------------------------------------------------------------------
 
+def run_concesionarios_pipeline(input_json: Path, report_json: Path, db_path: Path) -> StepResult:
+    ensure_file(CONCESIONARIOS_PIPELINE_RUNNER, "runner pipeline T_Concesionarios")
+    ensure_file(input_json, "JSON entrada concesionarios")
+    ensure_file(db_path, "base de datos")
+    return run_command(
+        "CONCESIONARIOS_PIPELINE",
+        [
+            sys.executable,
+            str(CONCESIONARIOS_PIPELINE_RUNNER),
+            "--input",
+            str(input_json),
+            "--db-path",
+            str(db_path),
+            "--report",
+            str(report_json),
+        ],
+    )
+
+
+def run_concesionarios_db_ingestion(input_json: Path, db_path: Path) -> StepResult:
+    ensure_file(CONCESIONARIOS_DB_INGESTION_RUNNER, "runner DB ingestion T_Concesionarios")
+    ensure_file(input_json, "JSON entrada concesionarios")
+    ensure_file(db_path, "base de datos")
+    return run_command(
+        "CONCESIONARIOS_DB_INGESTION",
+        [
+            sys.executable,
+            str(CONCESIONARIOS_DB_INGESTION_RUNNER),
+            "--input",
+            str(input_json),
+            "--db-path",
+            str(db_path),
+        ],
+    )
+
+
+def run_concesionarios_pending_audit(report_json: Path, output_json: Path) -> StepResult:
+    ensure_file(CONCESIONARIOS_AUDIT_PENDING_RUNNER, "runner auditoría pendientes T_Concesionarios")
+    ensure_file(report_json, "reporte pipeline concesionarios")
+    return run_command(
+        "CONCESIONARIOS_PENDING_AUDIT",
+        [
+            sys.executable,
+            str(CONCESIONARIOS_AUDIT_PENDING_RUNNER),
+            "--report",
+            str(report_json),
+            "--output",
+            str(output_json),
+        ],
+    )
+
+
+def run_concesionarios_build_merged(inputs: list[Path], output_json: Path) -> StepResult:
+    ensure_file(CONCESIONARIOS_BUILD_MERGED_RUNNER, "runner build merged concesionarios")
+    for path in inputs:
+        ensure_file(path, "input fuente concesionarios")
+
+    return run_command(
+        "CONCESIONARIOS_BUILD_MERGED",
+        [
+            sys.executable,
+            str(CONCESIONARIOS_BUILD_MERGED_RUNNER),
+            "--inputs",
+            *[str(p) for p in inputs],
+            "--output",
+            str(output_json),
+        ],
+    )
+
+
+def execute_concesionarios_pipeline_single_source(source_name: str, input_json: Path) -> None:
+    phase(f"CONCESIONARIOS · PIPELINE FUENTE {source_name.upper()}")
+
+    db_path = Path(prompt("Ruta DB", str(DEFAULT_DB)))
+
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    report_json = DEFAULT_OUTPUT_BASE / f"concesionarios_{source_name}_pipeline_{stamp}.json"
+    audit_json = DEFAULT_OUTPUT_BASE / f"concesionarios_{source_name}_pending_audit_{stamp}.json"
+
+    results: list[StepResult] = []
+
+    step = run_concesionarios_pipeline(input_json, report_json, db_path)
+    results.append(step)
+    print_step_result(step)
+
+    step = run_concesionarios_db_ingestion(input_json, db_path)
+    results.append(step)
+    print_step_result(step)
+
+    step = run_concesionarios_pending_audit(report_json, audit_json)
+    results.append(step)
+    print_step_result(step, stop_on_error=False)
+
+    phase("RESUMEN CONCESIONARIOS")
+    for item in results:
+        print(f"[{item.name}] {'OK' if item.ok else 'ERROR'}")
+    print(f"[INPUT] {input_json}")
+    print(f"[REPORTE] {report_json}")
+    print(f"[AUDIT_PENDIENTES] {audit_json}")
+
+
+def execute_concesionarios_pipeline_multifuente() -> None:
+    phase("CONCESIONARIOS · PIPELINE MULTIFUENTE")
+
+    db_path = Path(prompt("Ruta DB", str(DEFAULT_DB)))
+
+    autocasion_input = Path(
+        prompt(
+            "Input Autocasión",
+            str(CONCESIONARIOS_BASE / "autocasion" / "raw_exploratorio_autocasion.json"),
+        )
+    )
+
+    cochesnet_input = Path(
+        prompt(
+            "Input Coches.net",
+            str(CONCESIONARIOS_BASE / "cochesnet" / "raw_exploratorio_cochesnet.json"),
+        )
+    )
+
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    merged_json = CONCESIONARIOS_SAMPLE_BASE / f"concesionarios_merged_multifuente_{stamp}.json"
+    report_json = DEFAULT_OUTPUT_BASE / f"concesionarios_merged_pipeline_{stamp}.json"
+    audit_json = DEFAULT_OUTPUT_BASE / f"concesionarios_merged_pending_audit_{stamp}.json"
+
+    results: list[StepResult] = []
+
+    step = run_concesionarios_build_merged(
+        inputs=[autocasion_input, cochesnet_input],
+        output_json=merged_json,
+    )
+    results.append(step)
+    print_step_result(step)
+
+    step = run_concesionarios_pipeline(merged_json, report_json, db_path)
+    results.append(step)
+    print_step_result(step)
+
+    step = run_concesionarios_db_ingestion(merged_json, db_path)
+    results.append(step)
+    print_step_result(step)
+
+    step = run_concesionarios_pending_audit(report_json, audit_json)
+    results.append(step)
+    print_step_result(step, stop_on_error=False)
+
+    phase("RESUMEN CONCESIONARIOS MULTIFUENTE")
+    for item in results:
+        print(f"[{item.name}] {'OK' if item.ok else 'ERROR'}")
+    print(f"[MERGED_INPUT] {merged_json}")
+    print(f"[REPORTE] {report_json}")
+    print(f"[AUDIT_PENDIENTES] {audit_json}")
+
+
+def menu_concesionarios() -> None:
+    while True:
+        phase("CONCESIONARIOS")
+        print("1. Ejecutar pipeline Autocasión")
+        print("2. Ejecutar pipeline Coches.net")
+        print("3. Ejecutar pipeline multifuente")
+        print("4. Volver")
+        choice = input("> ").strip()
+
+        try:
+            if choice == "1":
+                execute_concesionarios_pipeline_single_source(
+                    source_name="autocasion",
+                    input_json=CONCESIONARIOS_BASE / "autocasion" / "raw_exploratorio_autocasion.json",
+                )
+            elif choice == "2":
+                execute_concesionarios_pipeline_single_source(
+                    source_name="cochesnet",
+                    input_json=CONCESIONARIOS_BASE / "cochesnet" / "raw_exploratorio_cochesnet.json",
+                )
+            elif choice == "3":
+                execute_concesionarios_pipeline_multifuente()
+            elif choice == "4":
+                return
+            else:
+                warn("Opción no válida.")
+        except OrbisError as exc:
+            error(str(exc))
+        except KeyboardInterrupt:
+            warn("Operación cancelada por usuario.")
+        except Exception as exc:
+            error(f"Fallo inesperado: {exc}")
 def menu_acquisition() -> None:
     while True:
         phase("ADQUISICION CATALOGO")
@@ -1205,7 +1400,8 @@ def main() -> None:
         print("1. Catálogo")
         print("2. Adquisición catálogo")
         print("3. Gestión y resumen de modelos")
-        print("4. Salir")
+        print("4. Concesionarios")
+        print("5. Salir")
         choice = input("> ").strip()
         if choice == "1":
             menu_catalog()
@@ -1214,6 +1410,8 @@ def main() -> None:
         elif choice == "3":
             menu_models()
         elif choice == "4":
+            menu_concesionarios()
+        elif choice == "5":
             print("Saliendo de Orbis Drive.")
             return
         else:
